@@ -34,6 +34,9 @@ public class UsersService {
     }
 
     public void addUser(User user) {
+        user.setName(user.getName());
+        user.setLastName(user.getLastName());
+        user.setDni(user.getDni());
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         usersRepository.save(user);
     }
