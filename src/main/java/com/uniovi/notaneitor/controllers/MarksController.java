@@ -3,13 +3,26 @@ package com.uniovi.notaneitor.controllers;
 import com.uniovi.notaneitor.entities.Mark;
 import com.uniovi.notaneitor.services.MarksService;
 import com.uniovi.notaneitor.services.UsersService;
+import com.uniovi.notaneitor.validators.MarkAddValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
+import java.util.HashSet;
+import java.util.Set;
 
 @Controller
 public class MarksController {
+
+    @Autowired
+    private HttpSession httpSession;
+
+    @Autowired
+    private MarkAddValidator markAddValidator;
 
     @Autowired
     private MarksService marksService;
@@ -18,23 +31,29 @@ public class MarksController {
     @Autowired
     private UsersService usersService;
 
-
-
     @RequestMapping("/mark/list")
     public String getList(Model model) {
         model.addAttribute("markList", marksService.getMarks());
         return "mark/list";
     }
 
+    //@RequestMapping(value = "/mark/add", method = RequestMethod.POST)
+    //public String setMark(@ModelAttribute Mark mark) {
+    //    marksService.addMark(mark);
+    //    return "redirect:/mark/list";
+    //}
+
     @RequestMapping(value = "/mark/add", method = RequestMethod.POST)
-    public String setMark(@ModelAttribute Mark mark) {
+    public String setMark(@Validated Mark mark, BindingResult result) {
+        markAddValidator.validate(mark, result);
+        if(result.hasErrors()){
+            return "/mark/add";
+        }
         marksService.addMark(mark);
         return "redirect:/mark/list";
-        //return "Ok";
-        //return "added: " + mark.getDescription()
-        //       + " with score : " + mark.getScore()
-        //       + " id: " + mark.getId();
     }
+
+
 
     @RequestMapping("/mark/details/{id}")
     public String getDetail(Model model, @PathVariable Long id) {
