@@ -19,13 +19,14 @@ import org.springframework.validation.*;
         @Override
         public void validate(Object target, Errors errors) {
             Mark mark = (Mark) target;
-            //ValidationUtils.rejectIfEmptyOrWhitespace(errors, "dni", "Error.empty");
+
             if (mark.getScore() < 0 || mark.getScore() > 10) {
-                errors.rejectValue("score", "Error.mark.add.score.length");
+                errors.rejectValue("score", "Error.mark.score.length");
             }
-            if (mark.getDescription().length() < 20) {
-                errors.rejectValue("description", "Error.mark.add.description.length");
-            }
+
+            //if (mark.getDescription().length() < 20) {
+            //    errors.rejectValue("description", "Error.mark.add.description.length");
+            //}
         }
 
 }

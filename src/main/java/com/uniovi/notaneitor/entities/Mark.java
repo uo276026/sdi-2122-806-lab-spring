@@ -3,10 +3,12 @@ package com.uniovi.notaneitor.entities;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "mark")
 public class Mark {
     @Id
     @GeneratedValue
     private Long id;
+
     private String description;
     private Double score;
     private Boolean resend = false;
@@ -51,9 +53,11 @@ public class Mark {
     public Double getScore() {
         return score;
     }
+
     public void setScore(Double score) {
         this.score = score;
     }
+
     public User getUser(){
         return user;
     }

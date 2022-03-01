@@ -4,6 +4,9 @@ import com.uniovi.notaneitor.services.RolesService;
 import com.uniovi.notaneitor.services.SecurityService;
 import com.uniovi.notaneitor.validators.SignUpFormValidator;
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import com.uniovi.notaneitor.entities.*;
 import com.uniovi.notaneitor.services.UsersService;
 import org.springframework.security.core.Authentication;
+
 
 @Controller
 public class UsersController {
@@ -28,10 +32,10 @@ public class UsersController {
     @Autowired
     private SecurityService securityService;
 
-    @RequestMapping("/user/list")
-    public String getListado(Model model) {
-        model.addAttribute("usersList", usersService.getUsers());
-        return "user/list";
+    @RequestMapping("/professor/list")
+    public String getList(Model model) {
+        model.addAttribute("usersList", usersService.getProfessors());
+        return "professor/list";
     }
 
     @RequestMapping(value = "/user/add")
@@ -67,9 +71,6 @@ public class UsersController {
 
     @RequestMapping(value = "/user/edit/{id}", method = RequestMethod.POST)
     public String setEdit(Model model, @PathVariable Long id, @ModelAttribute User user) {
-        //usersService.addUser(user);
-        //return "redirect:/user/details/" + id;
-
         User originalUser = usersService.getUser(id);
         //modificar solo dni, name y lastname
         originalUser.setName(user.getName());
@@ -117,6 +118,16 @@ public class UsersController {
         model.addAttribute("userList",usersService.getUsers() );
         return "user/list :: tableUsers";
     }
+
+
+
+
+
+
+
+
+
+
 
 
 }

@@ -16,9 +16,9 @@
             <tr>
                 <th scope="col">id</th>
                 <th scope="col">dni</th>
-                <th scope="col">nombre</th>
-                <th scope="col">apellidos</th>
-                <th scope="col">categoria</th>
+                <th scope="col">name</th>
+                <th scope="col">lastName</th>
+                <th scope="col">category</th>
                 <th scope="col"></th>
                 <th scope="col"></th>
                 <th scope="col"></th>
@@ -30,9 +30,9 @@
             <tr th:each="professor : ${professorList}">
                 <td scope="row" th:text="${professor.id}"> 1</td>
                 <td th:text="${professor.dni}"> Ejercicio 1</td>
-                <td th:text="${professor.nombre}">Ejercicio1</td>
-                <td th:text="${professor.apellidos}">Ejemplo</td>
-                <td th:text="${professor.categoria}">Ejemplo</td>
+                <td th:text="${professor.name}">Ejercicio1</td>
+                <td th:text="${professor.lastName}">Ejemplo</td>
+                <td th:text="${professor.category}">Ejemplo</td>
                 <td><a th:href="${'/professor/details/' + professor.id}">detalles</a></td>
                 <td><a th:href="${'/professor/edit/' + professor.id}">modificar</a></td>
                 <td><a th:href="${'/professor/delete/' + professor.id}">eliminar</a></td>
