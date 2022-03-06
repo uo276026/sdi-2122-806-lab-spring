@@ -15,8 +15,10 @@ public class User {
     private String name;
     private String lastName;
     private String role;
-    private String category;
     private String password;
+
+    //Solo para profesores
+    private String category;
 
     @Transient //propiedad que no se almacena e la tabla.
     private String passwordConfirm;
@@ -86,6 +88,13 @@ public class User {
 
     public String getFullName() {
         return this.name + " " + this.lastName;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+    public void setCategory(String category) {
+        this.category = category;
     }
 
 

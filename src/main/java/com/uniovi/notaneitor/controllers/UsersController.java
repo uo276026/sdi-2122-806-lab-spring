@@ -4,9 +4,6 @@ import com.uniovi.notaneitor.services.RolesService;
 import com.uniovi.notaneitor.services.SecurityService;
 import com.uniovi.notaneitor.validators.SignUpFormValidator;
 import org.springframework.beans.factory.annotation.*;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,10 +29,10 @@ public class UsersController {
     @Autowired
     private SecurityService securityService;
 
-    @RequestMapping("/professor/list")
+    @RequestMapping("/user/list")
     public String getList(Model model) {
-        model.addAttribute("usersList", usersService.getProfessors());
-        return "professor/list";
+        model.addAttribute("usersList", usersService.getUsers());
+        return "user/list";
     }
 
     @RequestMapping(value = "/user/add")
@@ -43,6 +40,8 @@ public class UsersController {
         model.addAttribute("rolesList", rolesService.getRoles());
         return "user/add";
     }
+
+
 
     @RequestMapping(value = "/user/add", method = RequestMethod.POST)
     public String setUser(@ModelAttribute User user) {

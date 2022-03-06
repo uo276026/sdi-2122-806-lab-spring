@@ -34,6 +34,7 @@ public class UsersService {
     }
 
     public void addUser(User user) {
+        //No se para que hace esto
         user.setName(user.getName());
         user.setLastName(user.getLastName());
         user.setDni(user.getDni());
@@ -49,22 +50,5 @@ public class UsersService {
         usersRepository.deleteById(id);
     }
 
-    public List<User> getProfessors() {
-        List<User> professors = new ArrayList<User>();
-        usersRepository.findProfessors().forEach(professors::add);
-        return professors;
-    }
 
-    public User getProfessor(Long id) {
-        return usersRepository.findById(id).get();
-    }
-
-    public void addProfessor(User p) {
-        // Si el Id es null le asignamos el ultimo + 1 de la lista
-        usersRepository.save(p);
-    }
-    public void deleteProfessor(Long id) {
-        usersRepository.deleteById(id);
-
-    }
 }

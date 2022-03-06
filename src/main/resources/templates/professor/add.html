@@ -1,38 +1,42 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
 <head th:replace="fragments/head">
     <title></title>
     <head>
 <body>
+
 <!-- Barra de Navegación superior -->
 <nav th:replace="fragments/nav"></nav>
 
 <div class="container" id="main-container">
     <h2>Agregar profesor</h2>
-    <form class="form-horizontal" method="post" action="/professor/add">
+    <form class="form-horizontal" method="post" action="/professor/add" th:object="${professor}">
         <div class="form-group">
             <label class="control-label col-sm-2" for="dni">DNI:</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="dni" name="dni" placeholder="Ejemplo DNI" required="true" />
-                <!--<span class="text-danger" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></span> -->
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-2" for="nombre">Nombre:</label>
+            <label class="control-label col-sm-2" for="name">Nombre:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ejemplo Nombre" required="true" />
+                <input type="text" class="form-control" id="name" name="name" placeholder="Ejemplo Nombre" required="true" />
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-2" for="apellidos">Apellidos:</label>
+            <label class="control-label col-sm-2" for="lastName">Apellidos:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="apellidos" name="apellidos" placeholder="Ejemplo Apellidos" required="true" />
+                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Ejemplo Apellidos" required="true" />
+
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-2" for="categoria">Categoria:</label>
+            <label class="control-label col-sm-2" for="category">Categoria:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="categoria" name="categoria" placeholder="Ejemplo Categoria" required="true" />
+                <input type="text" class="form-control" id="category" name="category" placeholder="Ejemplo Apellidos" required="true" />
+
             </div>
         </div>
         <div class="form-group">
