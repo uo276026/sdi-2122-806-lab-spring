@@ -3,16 +3,17 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <div class="container" id="main-container">
-    <h2>Notas</h2>
+    <h2 th:text="#{mark.list.title}"></h2>
     <form class="form-inline" action="/mark/list">
         <div class="form-group">
             <input name="searchText" type="text" class="form-control" size="50"
                    placeholder="Buscar por descripción o nombre del alumno">
         </div>
-        <button type="submit" class="btn btn-primary">Buscar</button>
+        <button type="submit" class="btn btn-primary"><span th:text="#{mark.list.search}"></span></button>
     </form>
-    <p>Las notas que actualmente figuran en el sistema son las siguientes:</p>
-    <button type="button" id="updateButton" class="btn btn-default">Actualizar</button>
+
+    <span th:text="#{mark.list.list}"></span>
+    <button type="button" id="updateButton" class="btn btn-default"> <span th:text="#{mark.list.update}"></span> </button>
     <script th:inline="javascript">
         /*<![CDATA[*/
         $("#updateButton").click(function () {
@@ -30,8 +31,8 @@
             <thead>
             <tr>
                 <th scope="col">id</th>
-                <th scope="col">Descripción</th>
-                <th scope="col">Puntuación</th>
+                <th scope="col"> <span th:text="#{mark.list.description}"></span></th>
+                <th scope="col"> <span th:text="#{mark.list.score}"></span></th>
                 <th scope="col"></th>
                 <th scope="col"></th>
                 <th scope="col"></th>
@@ -42,8 +43,8 @@
                 <td scope="row" th:text="${mark.id}"> 1</td>
                 <td th:text="${mark.description}"> Ejercicio 1</td>
                 <td th:text="${mark.score}">10</td>
-                <td><a th:href="${'/mark/details/' + mark.id}">detalles</a></td>
-                <td><a sec:authorize="hasRole('ROLE_PROFESSOR')" th:href="${'/mark/edit/' + mark.id}">modificar</a>
+                <td><a th:href="${'/mark/details/' + mark.id}"><span th:text="#{mark.list.details}"></span></a></td>
+                <td><a sec:authorize="hasRole('ROLE_PROFESSOR')" th:href="${'/mark/edit/' + mark.id}"><span th:text="#{mark.list.modify}"></span></a>
                     <div sec:authorize="hasRole('ROLE_STUDENT')" >
                         <div th:if="${mark.resend}">
                             <button type="button" th:id="${'resendButton' + mark.id}"
@@ -83,7 +84,7 @@
                         </div>
                     </div>
                 </td>
-                <td><a sec:authorize="hasRole('ROLE_PROFESSOR')" th:href="${'/mark/delete/' + mark.id}">eliminar</a>
+                <td><a sec:authorize="hasRole('ROLE_PROFESSOR')" th:href="${'/mark/delete/' + mark.id}"><span th:text="#{mark.list.delete}"></span></a>
                 </td>
             </tr>
             </tbody>
