@@ -1,9 +1,6 @@
 package com.uniovi.notaneitor.util;
 
-
 import java.util.List;
-
-
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
