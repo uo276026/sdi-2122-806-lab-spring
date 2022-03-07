@@ -1,5 +1,5 @@
 package com.uniovi.notaneitor.pageobjects;
-import com.uniovi.notaneitor.SeleniumUtils;
+import com.uniovi.notaneitor.util.SeleniumUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

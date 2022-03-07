@@ -8,7 +8,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.springframework.boot.test.context.SpringBootTest;
-
 import java.util.List;
 
 @SpringBootTest
@@ -48,7 +47,6 @@ class NotaneitorApplicationTests {
     //Antes de la primera prueba
     @BeforeAll
     static public void begin() {
-
     }
 
     //Al finalizar la última prueba
@@ -61,7 +59,7 @@ class NotaneitorApplicationTests {
     @Test
     @Order(1)
     void PR01A() {
-        PO_HomeView.checkWelcomeToPage(driver, PO_Properties.getSPANISH());
+       PO_HomeView.checkWelcomeToPage(driver, PO_Properties.getSPANISH());
     }
 
     @Test
@@ -109,7 +107,7 @@ class NotaneitorApplicationTests {
     }
 
     //PR06A. Prueba del formulario de registro. DNI repetido en la BD
-// Propiedad: Error.signup.dni.duplicate
+    // Propiedad: Error.signup.dni.duplicate
     @Test
     @Order(7)
     public void PR06A() {
@@ -149,6 +147,64 @@ class NotaneitorApplicationTests {
         String checkText = "Notas del usuario";
         List<WebElement> result = PO_View.checkElementBy(driver, "text", checkText);
         Assertions.assertEquals(checkText, result.get(0).getText());
+    }
+
+    @Test
+    @Order(10)
+    public void PR08() {
+        //Vamos al formulario de logueo.
+        PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+        //Rellenamos el formulario
+        PO_LoginView.fillLoginForm(driver, "99999993D", "123456");
+        //Comprobamos que entramos en la pagina de profesor
+        PO_PrivateView.clickOption(driver, "/mark/add", "class", "nav-link dropdown-toggle");
+        //PO_HomeView.clickOption(driver, "Gestión de notas", "class", "nav-link dropdown-toggle");
+        String checkText = "Agregar Nota";
+        List<WebElement> result = PO_View.checkElementBy(driver, "text", checkText);
+        Assertions.assertEquals(checkText, result.get(0).getText());
+    }
+
+    @Test
+    @Order(11)
+    public void PR09() {
+        //Vamos al formulario de logueo.
+        PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+        //Rellenamos el formulario
+        PO_LoginView.fillLoginForm(driver, "99999988F", "123456");
+        //Comprobamos que entramos en la pagina de administrador
+        String checkText = "Gestión de profesores";
+        List<WebElement> result = PO_View.checkElementBy(driver, "text", checkText);
+        Assertions.assertEquals(checkText, result.get(0).getText());
+    }
+
+    @Test
+    @Order(12)
+    public void PR10() {
+        //Vamos al formulario de logueo.
+        PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+        //Rellenamos el formulario
+        PO_LoginView.fillLoginForm(driver, "99999990A", "12345");
+        //Comprobamos que no entramos
+        String checkText = "Identíficate";
+        List<WebElement> result = PO_View.checkElementBy(driver, "text", checkText);
+        Assertions.assertEquals(checkText, result.get(0).getText());
+    }
+
+    @Test
+    @Order(13)
+    public void PR11() {
+        //Vamos al formulario de logueo.
+        PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+        //Rellenamos el formulario
+        PO_LoginView.fillLoginForm(driver, "99999990A", "123456");
+        //Comprobamos que entramos
+        String checkText = "Notas del usuario";
+        List<WebElement> result = PO_View.checkElementBy(driver, "text", checkText);
+        Assertions.assertEquals(checkText, result.get(0).getText());
+        PO_HomeView.clickOption(driver, "Desconectar", "class", "btn btn-primary");
+        checkText = "Identíficate";
+        List<WebElement> result2 = PO_View.checkElementBy(driver, "text", checkText);
+        Assertions.assertEquals(checkText, result2.get(0).getText());
     }
 
 //PR12. Loguearse, comprobar que se visualizan 4 filas de notas y desconectarse usando el rol de estudiante

@@ -12,6 +12,8 @@ import java.util.List;
 
 
 public interface UsersRepository extends CrudRepository<User, Long>{
+
+    @Query("SELECT u FROM User u WHERE u.dni=?1")
     User findByDni(String dni);
 
     @Query("SELECT u FROM User u WHERE UPPER(u.role) LIKE UPPER('ROLE_PROFESSOR')")
