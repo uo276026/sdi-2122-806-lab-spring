@@ -24,9 +24,11 @@ import org.springframework.validation.*;
                 errors.rejectValue("score", "Error.mark.score.length");
             }
 
-            //if (mark.getDescription().length() < 20) {
-            //    errors.rejectValue("description", "Error.mark.add.description.length");
-            //}
+            if (mark.getDescription().length() < 20) {
+                errors.rejectValue("description", "Error.mark.description.length");
+            }
+
+
         }
 
 }

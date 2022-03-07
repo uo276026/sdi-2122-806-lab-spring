@@ -43,26 +43,26 @@
         </ul>
         <ul class="navbar-nav justify-content-end">
 
-            <li class="nav-item dropdown">
+       <!--     <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="btnLanguage" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     <span th:text="#{language.change}"></span>
                 </a>
                 <div id="languageDropdownMenuButton" class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" id="btnEnglish" value="EN">
-                        <!--<img th:src="@{/images/if_uk_flag.png}" style="border: 0; float: left; margin-right: 15px"/>-->
+                        &lt;!&ndash;<img th:src="@{/images/if_uk_flag.png}" style="border: 0; float: left; margin-right: 15px"/>&ndash;&gt;
                         <span th:text="#{language.en}">Inglés</span>
                     </a>
                     <a class="dropdown-item" id="btnSpanish" value="ES">
-                        <!--<img th:src="@{/images/if_spain_flag.png}" style="border: 0; float: left; margin-right: 15px"/> -->
+                        &lt;!&ndash;<img th:src="@{/images/if_spain_flag.png}" style="border: 0; float: left; margin-right: 15px"/> &ndash;&gt;
                         <span th:text="#{language.es}">Español</span>
                     </a>
                     <a class="dropdown-item" id="btnGerman" value="DE">
-                        <!--<img th:src="@{/images/if_spain_flag.png}" style="border: 0; float: left; margin-right: 15px"/> -->
+                        &lt;!&ndash;<img th:src="@{/images/if_spain_flag.png}" style="border: 0; float: left; margin-right: 15px"/> &ndash;&gt;
                         <span th:text="#{language.de}">Alemán</span>
                     </a>
                 </div>
-            </li>
+            </li>-->
 
             <li sec:authorize="!isAuthenticated()" class="nav-item">
                 <a class="nav-link" href="/signup" th:text="#{signup.message}">

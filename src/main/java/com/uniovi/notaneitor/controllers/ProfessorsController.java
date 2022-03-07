@@ -1,15 +1,20 @@
 package com.uniovi.notaneitor.controllers;
 
-import com.uniovi.notaneitor.entities.Mark;
 import com.uniovi.notaneitor.entities.User;
 import com.uniovi.notaneitor.services.ProfessorsService;
+import com.uniovi.notaneitor.validators.ProfessorAddValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class ProfessorsController {
+
+    @Autowired
+    private ProfessorAddValidator professorAddValidator;
 
     @Autowired //Inyectar el servicio
     private ProfessorsService professorService;
@@ -21,9 +26,20 @@ public class ProfessorsController {
     }
 
     @RequestMapping(value = "/professor/add", method = RequestMethod.POST)
-    public String setProfessor(@ModelAttribute User p) {
-        professorService.addProfessor(p);
-        return "redirect:/professor/list";
+    public String setProfessor(@Validated User user, BindingResult result) {
+        professorAddValidator.validate(user, result);
+        if(result.hasErrors()){
+            return "/professor/add";
+        } else {
+            professorService.addProfessor(user);
+            return "redirect:/professor/list";
+        }
+    }
+
+    @RequestMapping(value = "/professor/add", method =RequestMethod.GET)
+    public String getProfessor(Model model) {
+        model.addAttribute("user", new User());
+        return "professor/add";
     }
 
     @RequestMapping("/professor/details/{id}")
@@ -38,11 +54,7 @@ public class ProfessorsController {
         return "redirect:/professor/list";
     }
 
-    @RequestMapping(value = "/professor/add")
-    public String getProfessor(Model model) {
-        model.addAttribute("professor", new User());
-        return "professor/add";
-    }
+
 
     @RequestMapping(value = "/professor/edit/{id}")
     public String getEdit(Model model, @PathVariable Long id) {

@@ -6,7 +6,6 @@ import com.uniovi.notaneitor.repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.uniovi.notaneitor.entities.*;
-import com.uniovi.notaneitor.services.UsersService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 

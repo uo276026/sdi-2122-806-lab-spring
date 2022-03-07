@@ -4,6 +4,9 @@ import com.uniovi.notaneitor.services.RolesService;
 import com.uniovi.notaneitor.services.SecurityService;
 import com.uniovi.notaneitor.validators.SignUpFormValidator;
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +16,9 @@ import org.springframework.web.bind.annotation.*;
 import com.uniovi.notaneitor.entities.*;
 import com.uniovi.notaneitor.services.UsersService;
 import org.springframework.security.core.Authentication;
+
+import java.security.Principal;
+import java.util.LinkedList;
 
 
 @Controller
@@ -103,6 +109,7 @@ public class UsersController {
     public String login(Model model) {
         return "login";
     }
+
     @RequestMapping(value = { "/home" }, method = RequestMethod.GET)
     public String home(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -111,6 +118,8 @@ public class UsersController {
         model.addAttribute("markList", activeUser.getMarks());
         return "home";
     }
+
+
 
     @RequestMapping("/user/list/update")
     public String updateList(Model model){

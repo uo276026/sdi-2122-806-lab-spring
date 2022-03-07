@@ -18,13 +18,24 @@ public class ProfessorAddValidator implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-        User p = (User) target;
-        if (p.getDni().length() != 9) {
+        User user = (User) target;
+        //El DNI debe tener exactamente 9 caracteres
+        if (user.getDni().length() != 9) {
             errors.rejectValue("dni", "Error.dni.length");
+        } else {
+            //El DNI no termina en letra
+            if (!Character.isLetter(user.getDni().charAt(8))) {
+                errors.rejectValue("dni", "Error.dni.letter");
+            } else{
+                //El DNI está repetido
+                User user2 = usersService.getUserByDni(user.getDni());
+                if(user2!=null){
+                    errors.rejectValue("dni", "Error.dni.repeated");
+                }
+            }
         }
-        if (!Character.isLetter(p.getDni().charAt(9))) {
-            errors.rejectValue("dni", "Error.dni.letter");
-        }
+
+
     }
 
 

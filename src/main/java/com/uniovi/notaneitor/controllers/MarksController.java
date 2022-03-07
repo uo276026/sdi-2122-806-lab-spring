@@ -65,11 +65,9 @@ public class MarksController {
         if(result.hasErrors()){
             return "/mark/add";
         } else {
-
             marksService.addMark(mark);
             return "redirect:list";
         }
-
     }
 
 
