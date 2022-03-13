@@ -10,6 +10,7 @@
     <!-- Primera -->
     <li class="page-item" >
       <a class="page-link" th:href="@{'?page=0'}">Primera</a>
+      <!--<a class="page-link" th:href="@{'?page=0'}">Primera</a>-->
     </li>
     <!-- Anterior (si la hay ) -->
     <li class="page-item" th:if='${page.getNumber()-1 >= 0}'>
